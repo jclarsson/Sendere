@@ -63,7 +63,7 @@ public class SenderesHlysnere implements Listener{
         );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void sendChat( AsyncPlayerChatEvent event ) throws IOException{
         if( event.isCancelled() || !Sendere.instance.chat || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
@@ -71,7 +71,7 @@ public class SenderesHlysnere implements Listener{
         this.publish( "AsyncPlayerChat", event.getMessage(), event.getPlayer().getName() );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void playerJoin( PlayerJoinEvent event ) throws IOException{
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
@@ -79,7 +79,7 @@ public class SenderesHlysnere implements Listener{
         this.publish( "PlayerJoin", "", event.getPlayer().getName() );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void playerLeave( PlayerQuitEvent event ) throws IOException{
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
@@ -87,7 +87,7 @@ public class SenderesHlysnere implements Listener{
         this.publish( "PlayerQuit", "", event.getPlayer().getName() );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void playerKick( PlayerKickEvent event ) throws IOException{
         if( event.isCancelled() || !Sendere.instance.kick || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
@@ -95,7 +95,7 @@ public class SenderesHlysnere implements Listener{
         this.publish( "PlayerKick", event.getReason(), event.getPlayer().getName() );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void playerDeath( PlayerDeathEvent event ) throws IOException{
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
@@ -103,7 +103,7 @@ public class SenderesHlysnere implements Listener{
         this.publish( "PlayerDeath", event.getDeathMessage(), event.getEntity().getName() );
     }
     
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void weatherChange( WeatherChangeEvent event ) throws IOException{
         if( event.isCancelled() || !Sendere.instance.weather || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
