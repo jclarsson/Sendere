@@ -45,6 +45,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Sendere extends JavaPlugin{
     public static Sendere instance;
     public final static Logger log = Logger.getLogger( "Minecraft" );
+    public final String Version    = "1.1.0";
     public String url              = "http://www.minwrit.me/hlysnere.php";
     public Boolean chat            = true;
     public Boolean join            = true;

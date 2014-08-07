@@ -1,6 +1,6 @@
 name: Sendere
 main: com.jamescl.sendere.Sendere
-version: 1.0.0
+version: 1.1.0
 description: Sendere reports many actions to an HTTP server.
 author: James Larsson
 commands:
