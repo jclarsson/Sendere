@@ -231,12 +231,14 @@ public class Sendere extends JavaPlugin{
     
     }
     
+    @SuppressWarnings("LoggerStringConcat")
     public void log( String s, Level l ){
         Sendere.log.log( l, "[Sendere] " + s );
     }
     
+    @SuppressWarnings("LoggerStringConcat")
     public void publish( String a, String b, String c ) throws MalformedURLException, IOException{
-        String urlUse = url + "?a=" + a + "&b=" + b + "&c=" + c.replace( " ", "<[;:]>" );
+        String urlUse = url + "?a=" + a + "&b=" + b.replace( " ", "<[;:]>" ) + "&c=" + c;
  
         URL obj = new URL( urlUse );
         HttpURLConnection con = ( HttpURLConnection ) obj.openConnection();
