@@ -3,3 +3,26 @@ main: com.jamescl.sendere.Sendere
 version: 1.0.0
 description: Sendere reports many actions to an HTTP server.
 author: James Larsson
+commands:
+   sendere:
+      description: Gives Sendere version, or reloads its configuration.
+      usage: /sendere [reload]
+      permission: sendere.reload
+      permission-message: You don't have permission!
+   adminmsg:
+      description: Broadcasts something as an Admin Message.
+      usage: /adminmsg <message>
+      permission: sendere.adminmsg
+      permission-message: You don't have permission!
+permissions:
+    sendere.*:
+        description: Gives access to all Sendere commands
+        children:
+            sendere.reload: true
+            sendere.adminmsg: true
+    sendere.reload:
+        description: Allows you to reload Sendere's configuration
+        default: op
+    sendere.adminmsg:
+        description: Allows you to send an Admin Message
+        default: op
