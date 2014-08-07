@@ -1,5 +1,7 @@
 #Sets the URL to send the information to. For help with how to set up a listener, and an example one, go to http://dev.bukkit.org/bukkit-plugins/sendere/.
 url: "http://www.minwrit.me/hlysnere.php"
+#Do you want to log whenever a response is given from the listener?
+Log-Response: false
     
 #Send players' actions
 Chat: true
@@ -10,3 +12,6 @@ Death: true
     
 #Send weather changes
 Weather: true
+#Send playerlist with "Join" and "Quit"
+Playerlist: true
+

@@ -53,6 +53,7 @@ public class Sendere extends JavaPlugin{
     public Boolean kick            = true;
     public Boolean death           = true;
     public Boolean weather         = true;
+    public Boolean playerList      = true;
     
     @Override
     public void onEnable(){
@@ -66,6 +67,7 @@ public class Sendere extends JavaPlugin{
         this.kick = this.getConfig().getBoolean( "Kick" );
         this.death = this.getConfig().getBoolean( "Death" );
         this.weather = this.getConfig().getBoolean( "Weather" );
+        this.playerList = this.getConfig().getBoolean( "Playerlist" );
         
         this.getServer().getPluginManager().registerEvents( new SenderesHlysnere(), this );
         
@@ -159,6 +161,7 @@ public class Sendere extends JavaPlugin{
                     this.kick = this.getConfig().getBoolean( "Kick" );
                     this.death = this.getConfig().getBoolean( "Death" );
                     this.weather = this.getConfig().getBoolean( "Weather" );
+                    this.playerList = this.getConfig().getBoolean( "Playerlist" );
                     this.log( "Configuration reloaded.", Level.INFO );
                 } else {
                     if ( sender.hasPermission("sendere.reload") ) {

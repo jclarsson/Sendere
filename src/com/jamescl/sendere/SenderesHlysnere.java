@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -73,6 +75,17 @@ public class SenderesHlysnere implements Listener{
     
     @EventHandler(priority = EventPriority.MONITOR)
     public void playerJoin( PlayerJoinEvent event ) throws IOException{
+        if( Sendere.instance.playerList && !Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) ){
+            String players;
+            players = "";
+            
+            for( Player player: Bukkit.getServer().getOnlinePlayers() ){
+                players = players + player.getName() + ",";
+            }
+            
+            Sendere.instance.publish( "Playerlist", players, "" );
+        }
+        
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
