@@ -1,4 +1,4 @@
-#Sets the URL to send the information to. For help with how to set up a listener, and an example one, go to [[TO DO]].
+#Sets the URL to send the information to. For help with how to set up a listener, and an example one, go to http://dev.bukkit.org/bukkit-plugins/sendere/.
 url: "http://www.minwrit.me/hlysnere.php"
     
 #Send players' actions
