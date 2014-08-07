@@ -1,0 +1,12 @@
+#Sets the URL to send the information to. For help with how to set up a listener, and an example one, go to [[TO DO]].
+url: "http://www.minwrit.me/hlysnere.php"
+    
+#Send players' actions
+Chat: true
+Join: true
+Quit: true
+Kick: true
+Death: true
+    
+#Send weather changes
+Weather: true
