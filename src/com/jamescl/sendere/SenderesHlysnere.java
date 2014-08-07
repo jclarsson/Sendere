@@ -46,7 +46,7 @@ import java.net.URL;
 public class SenderesHlysnere implements Listener{
     
     public void publish( String a, String b, String c ) throws MalformedURLException, IOException{
-        String urlUse = Sendere.instance.url + "?a=" + a + "&b=" + b + "&c=" + c.replace( " ", "<[;:]>" );
+        String urlUse = Sendere.instance.url + "?a=" + a + "&b=" + b.replace( " ", "<[;:]>" ) + "&c=" + c;
  
         URL obj = new URL( urlUse );
 	HttpURLConnection con = ( HttpURLConnection ) obj.openConnection();
