@@ -24,12 +24,7 @@
 
 package com.jamescl.sendere;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -48,29 +43,12 @@ import org.bukkit.event.weather.WeatherChangeEvent;
  */
 public class SenderesHlysnere implements Listener{
     
-    public void publish( String a, String b, String c ) throws MalformedURLException, IOException{
-        String urlUse = Sendere.instance.url + "?a=" + a + "&b=" + b.replace( " ", "<[;:]>" ) + "&c=" + c;
- 
-        URL obj = new URL( urlUse );
-	HttpURLConnection con = ( HttpURLConnection ) obj.openConnection();
-
-	con.setRequestMethod( "GET" );
-
-	con.setRequestProperty( "User-Agent", "Mozilla/5.0" );
- 
-	int responseCode = con.getResponseCode();
- 
-	BufferedReader in = new BufferedReader(
-            new InputStreamReader( con.getInputStream() )
-        );
-    }
-    
     @EventHandler(priority = EventPriority.MONITOR)
     public void sendChat( AsyncPlayerChatEvent event ) throws IOException{
         if( event.isCancelled() || !Sendere.instance.chat || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
-        this.publish( "AsyncPlayerChat", event.getMessage(), event.getPlayer().getName() );
+        Sendere.instance.publish( "AsyncPlayerChat", event.getMessage(), event.getPlayer().getName() );
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -89,15 +67,26 @@ public class SenderesHlysnere implements Listener{
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
-        this.publish( "PlayerJoin", "", event.getPlayer().getName() );
+        Sendere.instance.publish( "PlayerJoin", "", event.getPlayer().getName() );
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
     public void playerLeave( PlayerQuitEvent event ) throws IOException{
+        if( Sendere.instance.playerList && !Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) ){
+            String players;
+            players = "";
+            
+            for( Player player: Bukkit.getServer().getOnlinePlayers() ){
+                players = players + player.getName() + ",";
+            }
+            
+            Sendere.instance.publish( "Playerlist", players, "" );
+        }
+        
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
-        this.publish( "PlayerQuit", "", event.getPlayer().getName() );
+        Sendere.instance.publish( "PlayerQuit", "", event.getPlayer().getName() );
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -105,7 +94,7 @@ public class SenderesHlysnere implements Listener{
         if( event.isCancelled() || !Sendere.instance.kick || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
-        this.publish( "PlayerKick", event.getReason(), event.getPlayer().getName() );
+        Sendere.instance.publish( "PlayerKick", event.getReason(), event.getPlayer().getName() );
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -113,7 +102,7 @@ public class SenderesHlysnere implements Listener{
         if( !Sendere.instance.death || Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             return;
         
-        this.publish( "PlayerDeath", event.getDeathMessage(), event.getEntity().getName() );
+        Sendere.instance.publish( "PlayerDeath", event.getDeathMessage(), event.getEntity().getName() );
     }
     
     @EventHandler(priority = EventPriority.MONITOR)
@@ -128,6 +117,6 @@ public class SenderesHlysnere implements Listener{
             state = "Sun";
         }
         
-        this.publish( "WeatherChange", state, event.getWorld().getName() );
+        Sendere.instance.publish( "WeatherChange", state, event.getWorld().getName() );
     }
 }

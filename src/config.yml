@@ -15,3 +15,7 @@ Weather: true
 #Send playerlist with "Join" and "Quit"
 Playerlist: true
 
+#Send ping to server
+Ping: true
+#Pinging interval, in seconds
+Interval: 30

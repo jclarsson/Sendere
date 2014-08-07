@@ -37,6 +37,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  *
@@ -126,6 +127,19 @@ public class Sendere extends JavaPlugin{
                 Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
             }
         }
+        
+        Long ping = this.getConfig().getLong("Interval") * 20;
+        BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Sendere.instance.publish( "Ping", "", "" );
+                } catch( IOException ex ){
+                    Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
+                }
+            }
+        }, 0L, ping);
         
         this.log( "Sendere has been enabled. Reporting " + toReport + " to " + this.url, Level.INFO ); 
     }
