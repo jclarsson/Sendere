@@ -117,7 +117,7 @@ public class Sendere extends JavaPlugin{
         if( toReport.equals( "" ) )
             toReport = "naught";
         
-        for( Player player: Bukkit.getServer().getOnlinePlayers() ) {
+        for( Player player: Bukkit.getServer().getOnlinePlayers() ){
             try{
                 this.publish( "PlayerJoin", player.getName(), "" );
             } catch( IOException ex ){
@@ -139,7 +139,7 @@ public class Sendere extends JavaPlugin{
         }
         try{
             this.publish( "ServerStop", "", "" );
-        } catch (IOException ex){
+        } catch ( IOException ex ){
             Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
         }
         this.log( "Sendere has been disabled.", Level.INFO );
@@ -218,13 +218,13 @@ public class Sendere extends JavaPlugin{
         String urlUse = url + "?a=" + a + "&b=" + b + "&c=" + c.replace( " ", "<[;:]>" );
  
         URL obj = new URL( urlUse );
-	HttpURLConnection con = ( HttpURLConnection ) obj.openConnection();
+        HttpURLConnection con = ( HttpURLConnection ) obj.openConnection();
 
-	con.setRequestMethod( "GET" );
+        con.setRequestMethod( "GET" );
 
-	con.setRequestProperty( "User-Agent", "Mozilla/5.0" );
+        con.setRequestProperty( "User-Agent", "Mozilla/5.0" );
  
-	int responseCode = con.getResponseCode();
+        int responseCode = con.getResponseCode();
  
 	BufferedReader in = new BufferedReader(
             new InputStreamReader( con.getInputStream() )
