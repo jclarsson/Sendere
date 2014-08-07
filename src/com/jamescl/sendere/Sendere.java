@@ -48,6 +48,7 @@ public class Sendere extends JavaPlugin{
     public final static Logger log = Logger.getLogger( "Minecraft" );
     public final String Version    = "1.1.0";
     public String url              = "http://www.minwrit.me/hlysnere.php";
+    public Boolean logResponse     = false;
     public Boolean chat            = true;
     public Boolean join            = true;
     public Boolean quit            = true;
@@ -61,7 +62,8 @@ public class Sendere extends JavaPlugin{
         Sendere.instance = this;
         
         this.saveDefaultConfig();
-        this.url = this.getConfig().getString("url" );
+        this.url = this.getConfig().getString("URL" );
+        this.logResponse = this.getConfig().getBoolean( "Log-Response" );
         this.chat = this.getConfig().getBoolean( "Chat" );
         this.join = this.getConfig().getBoolean( "Join" );
         this.quit = this.getConfig().getBoolean( "Quit" );
@@ -168,7 +170,8 @@ public class Sendere extends JavaPlugin{
                 if ( !(sender instanceof Player) ) {
                     this.log( "Reloading configuration...", Level.INFO );
                     this.reloadConfig();
-                    this.url = this.getConfig().getString("url" );
+                    this.url = this.getConfig().getString("URL" );
+                    this.logResponse = this.getConfig().getBoolean( "Log-Response" );
                     this.chat = this.getConfig().getBoolean( "Chat" );
                     this.join = this.getConfig().getBoolean( "Join" );
                     this.quit = this.getConfig().getBoolean( "Quit" );
@@ -181,7 +184,8 @@ public class Sendere extends JavaPlugin{
                     if ( sender.hasPermission("sendere.reload") ) {
                         sender.sendMessage("[Sendere] Reloading configuration...");
                         this.reloadConfig();
-                        this.url = this.getConfig().getString("url" );
+                        this.url = this.getConfig().getString("URL" );
+                        this.logResponse = this.getConfig().getBoolean( "Log-Response" );
                         this.chat = this.getConfig().getBoolean( "Chat" );
                         this.join = this.getConfig().getBoolean( "Join" );
                         this.quit = this.getConfig().getBoolean( "Quit" );
@@ -246,6 +250,19 @@ public class Sendere extends JavaPlugin{
 	BufferedReader in = new BufferedReader(
             new InputStreamReader( con.getInputStream() )
         );
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        
+        if( this.logResponse )
+            Sendere.log.log( Level.INFO, "[Sendere] The listener said:\n" + response );
+        
+        if( responseCode != 200 )
+            Sendere.log.log( Level.WARNING, "[Sendere] The listener did not have a HTTP Status code 200. Instead, it was " + responseCode + ". Wikipedia has a good article about what each HTTP Status code means." );
     }
     
 }
