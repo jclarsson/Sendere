@@ -242,10 +242,10 @@ public class Sendere extends JavaPlugin{
             new InputStreamReader( con.getInputStream() )
         );
         String inputLine;
-        StringBuffer response = new StringBuffer();
+        String response = "";
         
         while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+            response += inputLine;
         }
         in.close();
         
