@@ -182,22 +182,9 @@ public class Sendere extends JavaPlugin{
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if( cmd.getName().equalsIgnoreCase( "sendere" ) ){
             if( args[0].equals( "reload" ) || args[0].equals( "rl" ) ){
-                if ( !(sender instanceof Player) ) {
-                    this.log( "Reloading configuration...", Level.INFO );
-                    this.reloadConfig();
-                    this.url = this.getConfig().getString("URL" );
-                    this.logResponse = this.getConfig().getBoolean( "Log-Response" );
-                    this.chat = this.getConfig().getBoolean( "Chat" );
-                    this.join = this.getConfig().getBoolean( "Join" );
-                    this.quit = this.getConfig().getBoolean( "Quit" );
-                    this.kick = this.getConfig().getBoolean( "Kick" );
-                    this.death = this.getConfig().getBoolean( "Death" );
-                    this.weather = this.getConfig().getBoolean( "Weather" );
-                    this.playerList = this.getConfig().getBoolean( "Playerlist" );
-                    this.log( "Configuration reloaded.", Level.INFO );
-                } else {
-                    if ( sender.hasPermission("sendere.reload") ) {
-                        sender.sendMessage("[Sendere] Reloading configuration...");
+                if( args[0].equals( "reload" ) || args[0].equals( "rl" ) )
+                    if ( !( sender instanceof Player ) ) {
+                        this.log( "Reloading configuration...", Level.INFO );
                         this.reloadConfig();
                         this.url = this.getConfig().getString("URL" );
                         this.logResponse = this.getConfig().getBoolean( "Log-Response" );
@@ -207,39 +194,26 @@ public class Sendere extends JavaPlugin{
                         this.kick = this.getConfig().getBoolean( "Kick" );
                         this.death = this.getConfig().getBoolean( "Death" );
                         this.weather = this.getConfig().getBoolean( "Weather" );
-                        sender.sendMessage("[Sendere] Configuration reloaded.");
+                        this.playerList = this.getConfig().getBoolean( "Playerlist" );
+                        this.log( "Configuration reloaded. Changes to Ping settings will not change until full server reload.", Level.INFO );
+                    } else {
+                        if ( sender.hasPermission("sendere.reload") ) {
+                            sender.sendMessage("[Sendere] Reloading configuration...");
+                            this.reloadConfig();
+                            this.url = this.getConfig().getString("URL" );
+                            this.logResponse = this.getConfig().getBoolean( "Log-Response" );
+                            this.chat = this.getConfig().getBoolean( "Chat" );
+                            this.join = this.getConfig().getBoolean( "Join" );
+                            this.quit = this.getConfig().getBoolean( "Quit" );
+                            this.kick = this.getConfig().getBoolean( "Kick" );
+                            this.death = this.getConfig().getBoolean( "Death" );
+                            this.weather = this.getConfig().getBoolean( "Weather" );
+                            sender.sendMessage("[Sendere] Configuration reloaded.");
+                        }
                     }
-                }
             } else {
                 sender.sendMessage( "[Sendere] Version " + this.Version );
             }
-        }
-                
-        if( args[0].equals( "adminmsg" ) ){
-            if( args.length < 1 ){
-                try{
-                    if ( !( sender instanceof Player ) ) {
-                        for( Player player: Bukkit.getServer().getOnlinePlayers() ){
-                            player.sendMessage( "[Admin Message: Console] " + args[0] );
-                        }
-                        this.publish( "AdminMessage", args[0], "Console" );
-                    } else {
-                        if ( sender.hasPermission("sendere.adminmsg") ) {
-                            for( Player player: Bukkit.getServer().getOnlinePlayers() ){
-                                player.sendMessage( "[Admin Message: " + sender.getName() + "] " + args[0] );
-                            }
-                            this.publish( "AdminMessage", args[0], sender.getName() );
-                        }
-                    }	
-                } catch ( IOException ex ){
-                    Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
-                }
-            } else {
-                sender.sendMessage("Not enough arguments!");
-                return false;
-            }
-                
-            return true;
         }
           
         return false; 
