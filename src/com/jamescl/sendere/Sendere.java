@@ -234,7 +234,7 @@ public class Sendere extends JavaPlugin{
 
         con.setRequestMethod( "GET" );
 
-        con.setRequestProperty( "User-Agent", "Mozilla/5.0" );
+        con.setRequestProperty( "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:29.0) Gecko/20100101 Firefox/29.0" );
  
         int responseCode = con.getResponseCode();
  
