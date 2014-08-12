@@ -121,6 +121,12 @@ public class Sendere extends JavaPlugin{
         if( toReport != "" )
             toReport = toReport + ", ";
         
+        if( this.playerList )
+            toReport = toReport + "playerlist";
+        
+        if( toReport != "" )
+            toReport = toReport + ", ";
+        
         if( this.pingYes )
             toReport = toReport + "ping";
         
