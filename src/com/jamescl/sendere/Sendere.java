@@ -249,7 +249,7 @@ public class Sendere extends JavaPlugin{
         }
         in.close();
         
-        if( this.logResponse )
+        if( this.logResponse && ( !response.equals( "" ) ) )
             Sendere.log.log( Level.INFO, "[Sendere] The listener said:\n" + response );
         
         if( responseCode != 200 )
