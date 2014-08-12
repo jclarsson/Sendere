@@ -56,6 +56,7 @@ public class Sendere extends JavaPlugin{
     public Boolean death           = true;
     public Boolean weather         = true;
     public Boolean playerList      = true;
+    public Boolean pingYes         = true;
     
     @Override
     public void onEnable(){
@@ -71,6 +72,7 @@ public class Sendere extends JavaPlugin{
         this.death = this.getConfig().getBoolean( "Death" );
         this.weather = this.getConfig().getBoolean( "Weather" );
         this.playerList = this.getConfig().getBoolean( "Playerlist" );
+        this.pingYes = this.getConfig().getBoolean( "Ping" );
         
         this.getServer().getPluginManager().registerEvents( new SenderesHlysnere(), this );
         
@@ -116,6 +118,12 @@ public class Sendere extends JavaPlugin{
         if( this.weather )
             toReport = toReport + "weather changing";
         
+        if( toReport != "" )
+            toReport = toReport + ", ";
+        
+        if( this.pingYes )
+            toReport = toReport + "ping";
+        
         if( this.url.equals( "http://www.minwrit.me/hlysnere.php" ) )
             toReport = "";
         
@@ -130,19 +138,20 @@ public class Sendere extends JavaPlugin{
             }
         }
         
-        Long ping = this.getConfig().getLong("Interval") * 20;
-        BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    Sendere.instance.publish( "Ping", "", "" );
-                } catch( IOException ex ){
-                    Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
+        if( this.pingYes ){
+            Long ping = this.getConfig().getLong( "Interval" ) * 20;
+            BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+            scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        Sendere.instance.publish( "Ping", "", "" );
+                    } catch( IOException ex ){
+                        Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
+                    }
                 }
-            }
-        }, 0L, ping);
-        
+            }, 0L, ping);
+        }
         this.log( "Sendere has been enabled. Reporting " + toReport + " to " + this.url, Level.INFO ); 
     }
     
