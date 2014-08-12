@@ -138,7 +138,7 @@ public class Sendere extends JavaPlugin{
         
         for( Player player: Bukkit.getServer().getOnlinePlayers() ){
             try{
-                this.publish( "PlayerJoin", player.getName(), "" );
+                this.publish( "PlayerJoin", "", player.getName() );
             } catch( IOException ex ){
                 Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
             }
@@ -165,7 +165,7 @@ public class Sendere extends JavaPlugin{
     public void onDisable(){
         for( Player player: Bukkit.getServer().getOnlinePlayers() ){
             try {
-                this.publish( "PlayerQuit", player.getName(), "" );
+                this.publish( "PlayerQuit", "", player.getName() );
             } catch( IOException ex ){
                 Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
             }
