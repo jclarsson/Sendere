@@ -180,7 +180,7 @@ public class Sendere extends JavaPlugin{
     
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if( cmd.getName().equalsIgnoreCase("sendere") ){
+        if( cmd.getName().equalsIgnoreCase( "sendere" ) ){
             if( args[0].equals( "reload" ) || args[0].equals( "rl" ) ){
                 if ( !(sender instanceof Player) ) {
                     this.log( "Reloading configuration...", Level.INFO );
