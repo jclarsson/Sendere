@@ -6,7 +6,7 @@ author: James Larsson
 commands:
    sendere:
       description: Gives Sendere version, or reloads its configuration.
-      usage: /sendere [reload]
+      usage: /sendere [reload | version]
       permission: sendere.reload
       permission-message: You don't have permission!
 permissions:
