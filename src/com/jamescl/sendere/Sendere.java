@@ -151,7 +151,13 @@ public class Sendere extends JavaPlugin{
                 @Override
                 public void run() {
                     try{
-                        Sendere.instance.publish( "Ping", "", "" );
+                        String playersToList = "";
+                        if( Sendere.instance.playerList && !Sendere.instance.url.equals( "http://www.minwrit.me/hlysnere.php" ) ){
+                            for( Player player: Bukkit.getServer().getOnlinePlayers() ){
+                                playersToList = playersToList + player.getName() + ",";
+                            }
+                        }
+                        Sendere.instance.publish( "Ping", playersToList, "" );
                     } catch( IOException ex ){
                         Logger.getLogger( Sendere.class.getName() ).log( Level.SEVERE, null, ex );
                     }
