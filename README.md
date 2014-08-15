@@ -14,6 +14,7 @@ As of version 1.1.0, Sendere can send:
 * Players being kicked
 * Player list
 * Pings
+
 ## How do I set up a listener?
 A listener is at a URL, and **must** support GET.
 Sendere sends to listeners in this format: *http:/ /myamazingwebsite.com/myevenmoreamazinglistener.php* **?a=Action&b=Info&c=Name**
