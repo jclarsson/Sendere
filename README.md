@@ -16,7 +16,7 @@ As of version 1.1.0, Sendere can send:
 * Pings
 === How do I set up a listener? ===
 A listener is at a URL, and **must** support GET.
-Sendere sends to listeners in this format: *http:/ /myamazingwebsite.com/myevenmoreamazinglistener.php***?a=Action&b=Info&c=Name**
+Sendere sends to listeners in this format: *http:/ /myamazingwebsite.com/myevenmoreamazinglistener.php* **?a=Action&b=Info&c=Name**
 
 a: The actual action itself: AsyncPlayerChat, PlayerJoin, PlayerQuit, PlayerKick, PlayerDeath, WeatherChange, Ping.
 
