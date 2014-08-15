@@ -14,7 +14,7 @@ As of version 1.1.0, Sendere can send:
 * Players being kicked
 * Player list
 * Pings
-=== How do I set up a listener? ===
+## How do I set up a listener?
 A listener is at a URL, and **must** support GET.
 Sendere sends to listeners in this format: *http:/ /myamazingwebsite.com/myevenmoreamazinglistener.php* **?a=Action&b=Info&c=Name**
 
@@ -51,9 +51,9 @@ With knowledge of Internet scripting, you could use it to:
 
 Some selected items from that list have had [tutorials](http://dev.bukkit.org/bukkit-plugins/sendere/pages/tutorials/) made!
 
-=== Other Builds ===
+## Other Builds
 You can find Beta and Nightly builds [here](http://www.jamescl.com/Sendere/). These may be extremely buggy, and HAVE NOT been approved by BukkitDev Staff. Use them at your own risk.
-=== Example Config ===
+## Example Config
 ```yaml
 #Sets the URL to send the information to. For help with how to set up a listener, and an example one, go to http://dev.bukkit.org/bukkit-plugins/sendere/.
 URL: "http://www.minwrit.me/hlysnere.php"
